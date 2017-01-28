@@ -28,3 +28,15 @@
 [submodule "v/plugins/vim-python-pep8-indent"]
 	path = v/plugins/vim-python-pep8-indent
 	url = https://github.com/blueyed/vim-python-pep8-indent.git
+[submodule "v/plugins/vim-snippets"]
+	path = v/plugins/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "v/plugins/tlib_vim"]
+	path = v/plugins/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "v/plugins/vim-addon-mw-utils"]
+	path = v/plugins/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "v/plugins/vim-snipmate"]
+	path = v/plugins/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
