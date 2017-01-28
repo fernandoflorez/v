@@ -13,6 +13,9 @@ set nocompatible
 
 set nomodeline
 
+" please no
+set belloff=all
+
 set nowrap
 set tabstop=4
 set softtabstop=4
@@ -38,22 +41,22 @@ set hlsearch
 " filename auto-complete
 set wildmode=list:longest
 
-set colorcolumn=80
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
 
 " highlight cursor line
 set cursorline
 
-" visual select after tab/untab
-vmap <Tab> >gv
-vmap <S-Tab> <gv
+" split vertical windows below
+set splitbelow
 
-" text bubbling
-nmap <C-k> [e
-nmap <C-j> ]e
-vmap <C-k> [egv
-vmap <C-j> ]egv
+" visual select after tab/untab
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 filetype plugin on
+syntax enable
 
 if has('gui_running')
     set guioptions-=T
@@ -70,7 +73,8 @@ if has('statusline')
     set statusline+=%{SyntasticStatuslineFlag()}%*\ [%P]
 endif
 
-map <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader><space> :nohlsearch<CR>
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
