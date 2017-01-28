@@ -1,0 +1,78 @@
+let g:v_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
+
+" pathogen
+exe 'source ' . g:v_path . '/core/pathogen/autoload/pathogen.vim'
+execute pathogen#infect(g:v_path . '/plugins/{}')
+
+if filereadable(expand("~/.vimrc.before"))
+  source ~/.vimrc.before
+endif
+
+
+" we are millenials
+set nocompatible
+
+set nomodeline
+
+set nowrap
+set tabstop=4
+set softtabstop=4
+set expandtab
+set autoindent
+set shiftwidth=4
+set number
+set scrolloff=4
+
+" lots of undos
+set history=100
+set undolevels=100
+
+set nobackup
+set noswapfile
+
+" search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+" filename auto-complete
+set wildmode=list:longest
+
+set colorcolumn=80
+
+" highlight cursor line
+set cursorline
+
+" visual select after tab/untab
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" text bubbling
+nmap <C-k> [e
+nmap <C-j> ]e
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
+filetype plugin on
+
+if has('gui_running')
+    set guioptions-=T
+endif
+
+if has('statusline')
+    " always display statusline
+    set laststatus=2
+
+    " customize
+    set statusline=%f
+    set statusline+=%=
+    set statusline+=\ %#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}%*\ [%P]
+endif
+
+map <leader>n :NERDTreeToggle<CR>
+
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.before
+endif
