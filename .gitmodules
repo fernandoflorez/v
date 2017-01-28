@@ -13,3 +13,9 @@
 [submodule "v/plugins/syntastic"]
 	path = v/plugins/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "colors/vim-colors-solarized"]
+	path = colors/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "v/colors/vim-colors-solarized"]
+	path = v/colors/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git

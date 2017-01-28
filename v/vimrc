@@ -2,12 +2,11 @@ let g:v_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
 
 " pathogen
 exe 'source ' . g:v_path . '/core/pathogen/autoload/pathogen.vim'
-execute pathogen#infect(g:v_path . '/plugins/{}')
+execute pathogen#infect(g:v_path . '/plugins/{}', g:v_path . '/colors/{}')
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
-
 
 " we are millenials
 set nocompatible
@@ -74,5 +73,5 @@ endif
 map <leader>n :NERDTreeToggle<CR>
 
 if filereadable(expand("~/.vimrc.after"))
-  source ~/.vimrc.before
+  source ~/.vimrc.after
 endif
