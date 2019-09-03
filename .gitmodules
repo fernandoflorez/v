@@ -40,3 +40,6 @@
 [submodule "v/plugins/vim-snipmate"]
 	path = v/plugins/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
+[submodule "v/plugins/ale"]
+	path = v/plugins/ale
+	url = git@github.com:dense-analysis/ale.git
