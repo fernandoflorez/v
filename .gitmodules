@@ -13,12 +13,6 @@
 [submodule "v/plugins/syntastic"]
 	path = v/plugins/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
-[submodule "colors/vim-colors-solarized"]
-	path = colors/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "v/colors/vim-colors-solarized"]
-	path = v/colors/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "v/plugins/vim-gitgutter"]
 	path = v/plugins/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
@@ -43,3 +37,6 @@
 [submodule "v/plugins/ale"]
 	path = v/plugins/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "v/colors/hybrid"]
+	path = v/colors/hybrid
+	url = https://github.com/w0ng/vim-hybrid.git
