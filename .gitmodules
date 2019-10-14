@@ -40,3 +40,6 @@
 [submodule "v/colors/hybrid"]
 	path = v/colors/hybrid
 	url = https://github.com/w0ng/vim-hybrid.git
+[submodule "v/plugins/airline"]
+	path = v/plugins/airline
+	url = https://github.com/vim-airline/vim-airline
