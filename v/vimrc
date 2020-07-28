@@ -1,15 +1,36 @@
+" we are millenials
+set nocompatible
+
 let g:v_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
 
-" pathogen
-exe 'source ' . g:v_path . '/core/pathogen/autoload/pathogen.vim'
-execute pathogen#infect(g:v_path . '/plugins/{}', g:v_path . '/colors/{}')
+" auto-install vim-plug
+if empty(glob(g:v_path . '/core/autoload/plug.vim'))
+  exe 'r !curl -sfLo ' . g:v_path . '/core/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+exe 'source ' . g:v_path . '/core/autoload/plug.vim'
+
+" plugins
+call plug#begin(g:v_path . '/plugged')
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-syntastic/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'blueyed/vim-python-pep8-indent'
+Plug 'honza/vim-snippets'
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate'
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'dracula/vim'
+call plug#end()
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
-
-" we are millenials
-set nocompatible
 
 set nomodeline
 
@@ -72,10 +93,15 @@ if has('statusline')
     set statusline=%f
     set statusline+=%=
     set statusline+=\ %#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}%*\ [%P]
+    if exists('g:plugs.syntastic')
+        set statusline+=%{SyntasticStatuslineFlag()}
+    endif
+    set statusline+=%*\ [%P]
 endif
 
-nnoremap <leader>n :NERDTreeToggle<CR>
+if exists('g:plugs.nerdtree')
+    nnoremap <leader>n :NERDTreeToggle<CR>
+endif
 nnoremap <leader><space> :nohlsearch<CR>
 " avoid unindenting from smartindent
 inoremap # X#
