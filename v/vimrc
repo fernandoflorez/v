@@ -6,7 +6,7 @@ let g:v_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
 " auto-install vim-plug
 if empty(glob(g:v_path . '/core/autoload/plug.vim'))
   exe 'r !curl -sfLo ' . g:v_path . '/core/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | q
 endif
 exe 'source ' . g:v_path . '/core/autoload/plug.vim'
 
@@ -93,13 +93,13 @@ if has('statusline')
     set statusline=%f
     set statusline+=%=
     set statusline+=\ %#warningmsg#
-    if exists('g:plugs.syntastic')
+    if isdirectory(g:plugs.syntastic.dir)
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
     set statusline+=%*\ [%P]
 endif
 
-if exists('g:plugs.nerdtree')
+if isdirectory(g:plugs.nerdtree.dir)
     nnoremap <leader>n :NERDTreeToggle<CR>
 endif
 nnoremap <leader><space> :nohlsearch<CR>
