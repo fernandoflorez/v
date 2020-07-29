@@ -12,7 +12,7 @@ function clone_repo() {
 }
 
 function link_files() {
-    ln -s "${HOME}/.v/v/vimrc" "${HOME}/.vimrc" || die "Could not create links"
+    ln -s "${HOME}/.v/vimrc" "${HOME}/.vimrc" || die "Could not create links"
 }
 
 function install() {
