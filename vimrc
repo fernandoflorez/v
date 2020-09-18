@@ -26,6 +26,8 @@ Plug 'garbas/vim-snipmate'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'dracula/vim'
+Plug 'elzr/vim-json'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 if filereadable(expand("~/.vimrc.before"))
@@ -85,19 +87,19 @@ if has('gui_running')
     set guioptions-=T
 endif
 
-if has('statusline')
+" if has('statusline')
     " always display statusline
-    set laststatus=2
+    " set laststatus=2
 
     " customize
-    set statusline=%f
-    set statusline+=%=
-    set statusline+=\ %#warningmsg#
-    if isdirectory(g:plugs.syntastic.dir)
-        set statusline+=%{SyntasticStatuslineFlag()}
-    endif
-    set statusline+=%*\ [%P]
-endif
+    " set statusline=%f
+    " set statusline+=%=
+    " set statusline+=\ %#warningmsg#
+    " if isdirectory(g:plugs.syntastic.dir)
+    "     set statusline+=%{SyntasticStatuslineFlag()}
+    " endif
+    " set statusline+=%*\ [%P]
+" endif
 
 if isdirectory(g:plugs.nerdtree.dir)
     nnoremap <leader>n :NERDTreeToggle<CR>
