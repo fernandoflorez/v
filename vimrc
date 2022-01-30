@@ -101,6 +101,9 @@ endif
     " set statusline+=%*\ [%P]
 " endif
 
+" Set default snipmate version to 1
+let g:snipMate = { 'snippet_version' : 1 }
+
 if isdirectory(g:plugs.nerdtree.dir)
     nnoremap <leader>n :NERDTreeToggle<CR>
 endif
