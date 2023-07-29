@@ -28,6 +28,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'dracula/vim'
 Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'psf/black', {'branch': 'stable'}
 call plug#end()
 
 if filereadable(expand("~/.vimrc.before"))
