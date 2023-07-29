@@ -27,7 +27,7 @@ Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'dracula/vim'
 Plug 'elzr/vim-json'
-Plug 'tabnine/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 if filereadable(expand("~/.vimrc.before"))
