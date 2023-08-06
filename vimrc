@@ -25,7 +25,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
-Plug 'dracula/vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psf/black', {'branch': 'stable'}
@@ -111,6 +111,10 @@ endif
 nnoremap <leader><space> :nohlsearch<CR>
 " avoid unindenting from smartindent
 inoremap # X#
+
+" set theme
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
