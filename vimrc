@@ -112,10 +112,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 " avoid unindenting from smartindent
 inoremap # X#
 
-" set theme
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
