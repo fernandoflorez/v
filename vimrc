@@ -41,7 +41,7 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set number
-set scrolloff=4
+set scrolloff=8
 set backspace=indent,eol,start
 
 " lots of undos
