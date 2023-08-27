@@ -1,21 +1,17 @@
 " we are millenials
 set nocompatible
 
-let g:v_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
-
 " auto-install vim-plug
-if empty(glob(g:v_path . '/core/autoload/plug.vim'))
-  exe 'r !curl -sfLo ' . g:v_path . '/core/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if empty(glob('~/.vim/autoload/plug.vim'))
+  exe 'r !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | q
 endif
-exe 'source ' . g:v_path . '/core/autoload/plug.vim'
+exe 'source ~/.vim/autoload/plug.vim'
 
 " plugins
-call plug#begin(g:v_path . '/plugged')
+call plug#begin()
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'Yggdroot/indentLine'
-Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'blueyed/vim-python-pep8-indent'
@@ -29,11 +25,8 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psf/black', {'branch': 'stable'}
+Plug 'Donaldttt/fuzzyy'
 call plug#end()
-
-if filereadable(expand("~/.vimrc.before"))
-  source ~/.vimrc.before
-endif
 
 set nomodeline
 
@@ -71,6 +64,15 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
+" coc autocomplete
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " highlight cursor line
 set cursorline
 
@@ -88,30 +90,50 @@ if has('gui_running')
     set guioptions-=T
 endif
 
-" if has('statusline')
-    " always display statusline
-    " set laststatus=2
-
-    " customize
-    " set statusline=%f
-    " set statusline+=%=
-    " set statusline+=\ %#warningmsg#
-    " if isdirectory(g:plugs.syntastic.dir)
-    "     set statusline+=%{SyntasticStatuslineFlag()}
-    " endif
-    " set statusline+=%*\ [%P]
-" endif
-
 " Set default snipmate version to 1
 let g:snipMate = { 'snippet_version' : 1 }
 
-if isdirectory(g:plugs.nerdtree.dir)
-    nnoremap <leader>n :NERDTreeToggle<CR>
-endif
 nnoremap <leader><space> :nohlsearch<CR>
+
 " avoid unindenting from smartindent
 inoremap # X#
 
-if filereadable(expand("~/.vimrc.after"))
-  source ~/.vimrc.after
+" customization for v:
+" https://github.com/fernandoflorez/v/
+
+" change map leader
+let mapleader = ","
+let g:mapleader = ","
+
+" nerdcommenter customization
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDToggleCheckAllLines = 1
+
+" display json quotes
+let g:vim_json_syntax_conceal = 0
+
+" python's black customization
+let g:black_linelength = 79
+let g:black_preview = 1
+
+set relativenumber
+
+if has('gui_running')
+    " set font and font size
+    set guifont=Hack:h12
+" else
 endif
+
+silent! colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+
+" force to learn
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>

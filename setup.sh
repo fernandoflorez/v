@@ -8,18 +8,13 @@ function die() {
 
 function clone_repo() {
     git clone --recursive https://github.com/fernandoflorez/v.git \
-        "${HOME}/.v" || die "Could not clone repo"
-}
-
-function link_files() {
-    ln -s "${HOME}/.v/vimrc" "${HOME}/.vimrc" || die "Could not create links"
+        "${HOME}/.vim" || die "Could not clone repo"
 }
 
 function install() {
-    if [ ! -e "${HOME}/.v" ]; then
+    if [ ! -e "${HOME}/.vim" ]; then
         clone_repo
     fi
-    link_files
 }
 
 install
