@@ -15,10 +15,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'blueyed/vim-python-pep8-indent'
-Plug 'honza/vim-snippets'
-Plug 'tomtom/tlib_vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'garbas/vim-snipmate'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -26,6 +22,8 @@ Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psf/black', {'branch': 'stable'}
 Plug 'Donaldttt/fuzzyy'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 set nomodeline
@@ -65,6 +63,10 @@ if exists('+colorcolumn')
 endif
 
 " coc autocomplete
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
