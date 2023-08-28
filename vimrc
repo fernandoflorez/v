@@ -73,6 +73,12 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" bubbling
+vnoremap <c-j> :move '>+1<CR>gv=gv
+nnoremap <c-j> :move '>+1<CR>==^
+vnoremap <c-k> :move '<-2<CR>gv=gv
+nnoremap <c-k> :move '<-2<CR>==^
+
 " highlight cursor line
 set cursorline
 
