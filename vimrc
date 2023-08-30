@@ -22,7 +22,6 @@ Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psf/black', {'branch': 'stable'}
 Plug 'Donaldttt/fuzzyy'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
 
@@ -55,6 +54,10 @@ set ignorecase
 set smartcase
 set hlsearch
 
+" change map leader
+let mapleader = ","
+let g:mapleader = ","
+
 " filename auto-complete
 set wildmode=list:longest
 
@@ -67,13 +70,25 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <S-Tab>
+  \ coc#pum#visible() ? coc#pum#prev(1) :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#snippet#prev()\<CR>" :
+  \ CheckBackspace() ? "\<S-Tab>" :
+  \ coc#refresh()
+
+
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
 
 " bubbling
 vnoremap <c-j> :move '>+1<CR>gv=gv
@@ -98,22 +113,10 @@ if has('gui_running')
     set guioptions-=T
 endif
 
-" Set ultisnips triggers
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 nnoremap <leader><space> :nohlsearch<CR>
 
 " avoid unindenting from smartindent
 inoremap # X#
-
-" customization for v:
-" https://github.com/fernandoflorez/v/
-
-" change map leader
-let mapleader = ","
-let g:mapleader = ","
 
 " nerdcommenter customization
 let g:NERDSpaceDelims = 1
